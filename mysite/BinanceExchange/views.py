@@ -28,7 +28,7 @@ pl = viewload()
 #End Global Data
 
 def index(request):
-    return render(request,'/home/cherokee/streamer/Django app/mysite/BinanceExchange/templates/index.html')
+    return render(request,'index.html')
 
 def checkBalances(request):
     if 'key' in request.GET and 'secret' in request.GET:
@@ -57,14 +57,14 @@ def checkBalances(request):
                 'error':'The Portfolio is not a 100% rebalance. Please try again with a different configuration.',
                 'backurl':request.META.get('HTTP_REFERER'),
             }
-            return render(request,'/home/cherokee/streamer/Django app/mysite/BinanceExchange/templates/errorpage.html',context=context)
+            return render(request,'errorpage.html',context=context)
             
         if pl.panda_data == {}:
             context = {
                 'error':'You seem to have entered a text that cannot be parsed',
                 'backurl':request.META.get('HTTP_REFERER'),
             }
-            return render(request,'/home/cherokee/streamer/Django app/mysite/BinanceExchange/templates/errorpage.html',context=context)
+            return render(request,'errorpage.html',context=context)
 
         try:
             Account_info = client.get_account()
@@ -73,7 +73,7 @@ def checkBalances(request):
                 'error':'You seem to have entered either a wrong API Key or a wrong API secret.',
                 'backurl':request.META.get('HTTP_REFERER')
             }
-            return render(request,'/home/cherokee/streamer/Django app/mysite/BinanceExchange/templates/errorpage.html',context=context)
+            return render(request,'errorpage.html',context=context)
 
 
         pl.prices = client.get_all_tickers()
@@ -93,7 +93,7 @@ def checkBalances(request):
             'balance':balance,
             'balance_selection':balance_selection,
         }
-        return render(request,'/home/cherokee/streamer/Django app/mysite/BinanceExchange/templates/balanceandbuy.html',context=context)
+        return render(request,'balanceandbuy.html',context=context)
 
 def marketPlace(request):
     if 'currency' in request.GET and 'quantity' in request.GET:
@@ -108,7 +108,7 @@ def marketPlace(request):
                 'error':'You have not entered a number as the quantity you want to trade. Please enter a number',
                 'backurl':request.META.get('HTTP_REFERER'),
             }
-            return render(request,'/home/cherokee/streamer/Django app/mysite/BinanceExchange/templates/errorpage.html',context=context)
+            return render(request,'errorpage.html',context=context)
 
         if float(quantity) > float(currency['free']):
             print("YooHoo!")
@@ -117,7 +117,7 @@ def marketPlace(request):
                 'error':'You have entered a selling quantity that is higher than what is available in your basket. Please change the amount.',
                 'backurl':request.META.get('HTTP_REFERER'),
             }
-            return render(request,'/home/cherokee/streamer/Django app/mysite/BinanceExchange/templates/errorpage.html',context=context)
+            return render(request,'errorpage.html',context=context)
         else:
             
             #panda_rebalance = {}
@@ -179,7 +179,7 @@ def marketPlace(request):
                         'error':'Currency with symbol '+item+' does not exist in Binance. Try another currency',
                         'backurl':request.META.get('HTTP_REFERER'),
                     }
-                    return render(request,'/home/cherokee/streamer/Django app/mysite/BinanceExchange/templates/errorpage.html',context=context)
+                    return render(request,'errorpage.html',context=context)
 
             for del_item in del_array:
                 if del_item in pl.panda_rebalance:
@@ -191,7 +191,7 @@ def marketPlace(request):
                 'panda_rebalance':pl.panda_rebalance,
                 'backurl':request.META.get('HTTP_REFERER'),
             }
-            return render(request,'/home/cherokee/streamer/Django app/mysite/BinanceExchange/templates/tradeconfirmation.html',context=context)
+            return render(request,'tradeconfirmation.html',context=context)
 
 def finalsell(request):
 
