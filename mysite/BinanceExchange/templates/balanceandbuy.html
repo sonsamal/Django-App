@@ -1,0 +1,46 @@
+<!doctype HTML>
+<head>
+    <body>
+
+        <h1>Balance and Portfolio</h1>
+        <h3>Check you Binance Account Wallet and select any commodity that yo want to diversify</h3>
+        <form name="exchange" action="{%url 'marketPlace'%}" method="GET">
+        <div id="BalanceTable">
+            <table border="5">
+                <tr>
+                    <th colspan="2">
+                        <h4><br>Balances</h4>
+                    </th>
+                </tr>
+                <th>Currency</th>
+                <th>Tradeable Amount</th>
+                {% for item in balance %}
+                    <tr>
+                        <td>{{item.asset}}</td>
+                        <td>{{item.free}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+           
+            <p>Currency you have:</p>
+            <select name="currency" class="vertical-menu">
+                {% for item in balance_selection %}
+                    <option value="{{item}}">{{item.asset}}</option>
+                {% endfor %}
+            </select>
+            <p>Quantity of the currency you chose:</p>
+            <input type="text" name="quantity" id="q">
+            <br>
+            <br>
+            
+            <button name="button" type="submit">Let's figure out the portfolio!</button>
+            
+        </div>
+        </form>
+        <!-- <script type="text/javascript">
+            function validate(){
+                alert(document.getElementsById("q").text());
+            }
+        </script>      -->
+    </body>
+</head>

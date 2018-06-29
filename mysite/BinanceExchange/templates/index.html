@@ -1,0 +1,51 @@
+<!doctype html>
+<head>
+    <body>
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <h1>Welcome to the Exchange Center</h1>
+        <h3>For this exchange to process, you will have to provide us with the Binance Credentials</h3>
+        
+        
+        <div id="BinanceKeyDiv">
+            <form class="BinanceKey" action="{% url 'checkBalances' %}" method="GET">
+            API Key---<input type="text" name="key"/>
+            API Secret---<input type="text" name="secret"/>
+            Portfolio---<input type="text" name="portfolio"/>
+            <button type="submit">Get Started!</button>
+            </form>
+        </div>
+        
+        
+
+        <!-- <div id="exchange" style="display:none">
+        <p>Currency you have:</p>
+        <form class="form" action="">
+        <select name="currency" class="vertical-menu">
+            {% for item in coinlist %}
+                <option value="{{item.name}}">{{item.coinname}}</option>
+            {% endfor %}
+            <!-- <option value="1">one</option>
+            <option value="2">two</option>
+        </select>
+        <p>Quantity of the currency you chose:</p>
+        <input type="text" name="quantity">
+        <br>
+        <br>
+        <button name="button" type="submit">Let's figure out the portfolio!</button>
+        </form>
+        </div>
+
+        <script>
+            function myFunction(){
+                var x = document.getElementById("exchange");
+                if(x.style.display === "none"){
+                    x.style.display ="block";
+                }
+                else{
+                    x.style.display = "none";
+                }
+            }
+        </script> -->
+        
+    </body>
+</head>

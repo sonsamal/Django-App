@@ -1,0 +1,36 @@
+<!doctype HTML>
+<head>
+    <body>
+        <h1>TRADE COMPOSITION AND CONFIRMATION</h1>
+        <h3>Panda's proposed rebalance/investment</h3>
+        <form name="confirm" action="{%url 'finalsell'%}" method="GET">
+                <div id="rebalanceTable">
+                    <table border="5">
+                        <tr>
+                            <th colspan="3">
+                                <h4><br>Rebalance/Investment Ratio</h4>
+                            </th>
+                        </tr>
+                        <th>Currency</th>
+                        <th>Ratio</th>
+                        <th>Actual Investment Value</th>
+                        {% for key,value in panda_rebalance.items %}
+                            <tr>
+                                <td>{{key}}</td>
+                                {% for item in value %}
+                                <td>{{item}}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </table>
+                   
+                    <div id="button">
+                        <br>
+                        <button name="go" type="submit" value="{{panda_rebalance}}">Proceed with trade</button>
+                        <a href={{backurl}}>Change trade</a>
+                    </div>
+                    
+                </div>
+                </form>
+    </body>
+</head>

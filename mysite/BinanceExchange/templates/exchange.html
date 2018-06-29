@@ -1,0 +1,65 @@
+<!doctype HTML>
+<head>
+    <body>
+        <form name="finalpage" action="" method="GET">
+                <div id="rebalanceTable">
+                        <table border="5">
+                            <tr>
+                                <th colspan="3">
+                                    <h4><br>Successful Transactions</h4>
+                                </th>
+                            </tr>
+                            <th>Currency Exchanged</th>
+                            <th>Status</th>
+                            <th>Order Id</th>
+                            {% for key,value in success.items %}
+                                <tr>
+                                    <td>{{key}}</td>
+                                    {% for item in value %}
+                                    <td>{{item}}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </table>
+                        <br>
+                        <br>
+                        <table border="5">
+                                <tr>
+                                    <th colspan="3">
+                                        <h4><br>Failed Transactions</h4>
+                                    </th>
+                                </tr>
+                                <th>Currency Exchanged</th>
+                                <th>Status</th>
+                                <th>Error Message</th>
+                                {% for key,value in error.items %}
+                                    <tr>
+                                        <td>{{key}}</td>
+                                        {% for item in value %}
+                                        <td>{{item}}</td>
+                                        {% endfor %}
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        
+                            <table border="5">
+                                    <tr>
+                                        <th colspan="2">
+                                            <h4><br>Current Account Information After Trade</h4>
+                                        </th>
+                                    </tr>
+                                    <th>Currency</th>
+                                    <th>Tradeable Amount</th>
+                                    <th>Asset Allocation Percentage</th>
+                                    {% for item in balance %}
+                                        <tr>
+                                            <td>{{item.asset}}</td>
+                                            <td>{{item.free}}</td>
+                                            <td>{{item.percent}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                </div>
+        </form>
+    </body>
+</head>

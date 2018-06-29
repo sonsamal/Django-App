@@ -1,0 +1,14 @@
+<!doctype html>
+<head>
+    <body>
+        <h1>POTENTIAL PORTFOLIO</h1>
+        <p>With your willing investment of {{info}}, you can buy:</p>
+        <br>
+        <form method="POST" class="form" action="{{url_for('TransactionInitiate')}}">
+            {% for item in portfolio %}
+                <input type="checkbox" name="exchange" value="{{item[0]}}">{{item[1]}}<br>
+            {% endfor %}
+            <button name="button" value="submit">Buy the coins</button>
+        </form>
+    </body>
+</head>
